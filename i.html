@@ -1,0 +1,186 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Droppable - Default functionality</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+  <style>
+  #draggable, #draggable1, #draggable2  { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+  #droppable, #droppable1, #droppable2 { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+  #feedback { font-size: 1.4em; }
+  #feedback { font-size: 1.4em; }
+  #selectable .ui-selecting { background: #FECA40; }
+  #selectable .ui-selected { background: #F39814; color: white; }
+  #selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
+  html>body #sortable li { height: 1.5em; line-height: 1.2em; }
+  #resizable { height: 250px; padding: 0.5em; }
+  #resizable h3 { margin: 0; }
+  .ui-resizable-helper { border: 1px dotted gray; }
+  </style>
+<style>
+    .f1{
+        display: flex;
+        justify-content: space-around
+    }
+    </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script>
+    $( function() {
+      $( "#selectable" ).selectable({
+        stop: function() {
+          var result = $( "#select-result" ).empty();
+          $( ".ui-selected", this ).each(function() {
+            var index = $( "#selectable li" ).index( this );
+            result.append( " #" + ( index + 1 ) );
+          });
+        }
+      });
+    } );
+    </script>
+  <script>
+  $( function() {
+    $( "#draggable, #draggable-nonvalid" ).draggable();
+    $( "#droppable1" ).droppable({
+      accept: "#draggable",
+      classes: {
+        "ui-droppable-active": "ui-state-active",
+        "ui-droppable-hover": "ui-state-hover"
+      },
+      drop: function( event, ui ) {
+        $( this )
+          .addClass( "ui-state-highlight" )
+          .find( "p" )
+            .html( "Dropped!" );
+      }
+    });
+  } );
+  </script>
+  <script>
+    $( function() {
+        $( "#draggable1, #draggable-nonvalid" ).draggable();
+        $( "#droppable2" ).droppable({
+          accept: "#draggable1",
+          classes: {
+            "ui-droppable-active": "ui-state-active",
+            "ui-droppable-hover": "ui-state-hover"
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+          }
+        });
+      } );
+      </script>
+<script>
+    $( function() {
+        $( "#draggable2, #draggable-nonvalid" ).draggable();
+        $( "#droppable" ).droppable({
+            accept: "#draggable2",
+            classes: {
+            "ui-droppable-active": "ui-state-active",
+            "ui-droppable-hover": "ui-state-hover"
+    },
+        drop: function( event, ui ) {
+        $( this )
+            .addClass( "ui-state-highlight" )
+            .find( "p" )
+            .html( "Dropped!" );
+                  }
+                });
+              } );
+              </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+    $( function() {
+      $( "#selectable" )
+      .bind("mousedown", function(e) {
+          e.metaKey = true;   })
+      .selectable({
+          cancel: "#no"
+      });
+    } );
+    </script>
+
+<script>
+$( function() {
+    $( "#sortable" ).sortable({
+      placeholder: "ui-state-highlight"
+    });
+    $( "#sortable" ).disableSelection();
+  } );
+</script>
+</head>
+<body>
+    <center><h1>Виконайте тест на знання front-end</h1></center>
+    <h2 display:flex; 
+    align-items: 30px>Вправа 1</h2>
+ <center><h3>Перенесіть мови програмування до їх визначень</h3></center>
+<div class="f1"><center>
+    <div id="draggable" class="ui-widget-content">
+  <p>HTML - це</p>
+</div>
+ 
+<div id="droppable" class="ui-widget-header">
+  <p>динамічна, об'єктно-орієнтована прототипна мова програмування.</p>
+</div>
+<div id="draggable1" class="ui-widget-content">
+    <p>CSS - це</p>
+  </div>
+   
+  <div id="droppable1" class="ui-widget-header">
+    <p>стандартизована мова розмітки документів для перегляду веб-сторінок у браузері.</p>
+  </div>
+
+  <div id="draggable2" class="ui-widget-content">
+    <p>JavaScript - це</p>
+  </div>
+   
+  <div id="droppable2" class="ui-widget-header">
+    <p>це спеціальна мова стилю сторінок, що використовується для опису їхнього зовнішнього вигляду.</p>
+  </div>
+</center></div>
+ <h2>Вправа 2</h2>
+ <center><h3> Натисніть на мови програмування front-end та на бібліотеки</h3></center>
+   <ol id="selectable">
+  <li id="no" class="ui-widget-content">Java</li>
+  <li id="no" class="ui-widget-content">Bootstrap</li>
+  <li class="ui-widget-content">Css</li>
+  <li id="no" class="ui-widget-content">Python</li>
+  <li class="ui-widget-content">HTML</li>
+  <li class="ui-widget-content">JavaScript</li>
+  <li id="no" class="ui-widget-content">Wordpress</li>
+</ol>
+<h2>Вправа 3</h2>
+<center><h3>Складіть HTML код по порядку, щоб вийшов сайт я на фото</h3></center>
+<div id="resizable" class="ui-widget-content">
+    <img class="ui-widget-header" src="photo/00.jpg" alt="" width="500px">
+  </div>
+<div class="f2"><ul id="sortable">
+    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>p /p</li>
+    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>width="250px" height="250px"</li>
+    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>h1 /h1</li>
+    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span> img src="" alt=""</li>
+    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>html lang="en"</li>
+    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>/body /html</li>
+  </ul></div>
+<h2>Вправа 4</h2>
+<center><h3>ЧИ було у сайті(фото до минулого завдання) використано CSS стилі?</h3></center>
+<center><p>Правильна відповідь виділиться</p></center>
+  <ol id="selectable">
+    <li id="no" class="ui-widget-content">Ні</li>
+    <li class="ui-widget-content">Так</li>
+ </ol>
+  <center><h3>Напишіть відгук:</h3></center>
+   <textarea id="resizable" rows="5" cols="20"></textarea>
+</body>
+</html>
